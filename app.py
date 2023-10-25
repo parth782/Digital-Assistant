@@ -2,10 +2,12 @@ from flask import Flask, render_template,request,jsonify
 from translate import Translator
 import openai
 import pyautogui
+from dotenv import load_dotenv
+import os
 import webbrowser as wb
 app = Flask(__name__, static_url_path='/static', static_folder='static')
-
-openai.api_key = "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"
+load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 start = "Hello, This is your Virtual Assistant Veeru , What can I help you?"
 
 user_names={
