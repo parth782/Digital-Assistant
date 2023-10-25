@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Speech Example</title>
+</head>
+<body>
+    <div>
+        <textarea id="textToSpeak" placeholder="Enter text to speak"></textarea>
+        <button id="speakButton">Speak</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Function to initiate TTS
+        function speakText() {
+            var textToSpeak = $("#textToSpeak").val();
+            var synth = window.speechSynthesis;
+            var utterThis = new SpeechSynthesisUtterance(textToSpeak);
+            synth.speak(utterThis);
+        }
+
+        // Attach the speakText function to the button click event using jQuery
+        $("#speakButton").click(speakText);
+
+        // Trigger TTS when the document is loaded using jQuery
+        $(document).ready(function () {
+            var initialText = "Welcome to our website. Please enter text to be spoken.";
+            var synth = window.speechSynthesis;
+            var utterThis = new SpeechSynthesisUtterance(initialText);
+            synth.speak(utterThis);
+        });
+    </script>
+</body>
+</html>
