@@ -1,7 +1,6 @@
 from flask import Flask, render_template,request,jsonify
 from translate import Translator
 import openai
-import pyautogui
 from dotenv import load_dotenv
 import os
 import webbrowser as wb
@@ -26,11 +25,11 @@ def translate_response(response_text, target_language):
     translated_response = translator.translate(response_text)
     return translated_response
 
-def sendWhatsapp(phone_no,message):
-    Message = message
-    wb.open('https://web.whatsapp.com/send?phone='+phone_no+ '&text='+Message)
-    sleep(15)
-    pyautogui.press('enter')
+# def sendWhatsapp(phone_no,message):
+#     Message = message
+#     wb.open('https://web.whatsapp.com/send?phone='+phone_no+ '&text='+Message)
+#     sleep(15)
+#     pyautogui.press('enter')
 
 @app.route('/',methods=["GET"])
 def index():
@@ -99,15 +98,15 @@ def suggest():
     res="Pranshu:+91 8826 7378 30,Parth:+91 9354 4255 48, Shivam:+91 7011 4208 77,Rishav:+91 9717 4382 30"
     return jsonify({'records':res})
 
-@app.route('/send-msg',methods=["POST"])
-def send_msg():
-    text=request.get_json().get('text')
-    message=text.spilt()
-    msg=""
-    for i in range(1,len(message)):
-        msg+=message[i]+" "
-    sendWhatsapp(user_names[message[0]],msg)
-    return jsonify({'text':'Message Sent'})
+# @app.route('/send-msg',methods=["POST"])
+# def send_msg():
+#     text=request.get_json().get('text')
+#     message=text.spilt()
+#     msg=""
+#     for i in range(1,len(message)):
+#         msg+=message[i]+" "
+#     sendWhatsapp(user_names[message[0]],msg)
+#     return jsonify({'text':'Message Sent'})
 
 
    
